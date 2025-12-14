@@ -11,10 +11,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
-			.legal-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:1100px;margin:0 auto 1.25rem;padding:0 1rem;}
-			.legal-gallery .image{width:100%;height:320px;overflow:hidden;}
-			.legal-gallery .image img{width:100%;height:100%;object-fit:cover;display:block}
-			@media (max-width:760px){.legal-gallery{grid-template-columns:1fr;max-width:760px}.legal-gallery .image{height:220px}}
+			/* Gallery: allow natural image aspect ratios, avoid cropping */
+			.legal-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:1200px;margin:0 auto 1.25rem;padding:0 1rem;align-items:start}
+			.legal-gallery .image{width:100%;height:auto;display:flex;align-items:center;justify-content:center;background:#0b0b0b;padding:0.5rem}
+			.legal-gallery .image img{max-width:100%;height:auto;max-height:520px;object-fit:contain;display:block}
+			@media (max-width:980px){.legal-gallery{grid-template-columns:1fr;max-width:760px;padding:0 0.5rem}}
 		</style>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -38,19 +39,18 @@
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">PolicySense RAG Assistant</h1>
-							<p><strong>Production-Grade Compliance System</strong></p>
-							<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:880px;margin:0 auto 1.25rem;">
-								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
-									<img src="images/legal/Animation.gif" alt="PolicySense RAG Assistant" style="width:100%;height:100%;object-fit:cover;" />
+							<div class="legal-gallery">
+								<div class="image fit">
+									<img src="images/legal/Animation.gif" alt="PolicySense RAG Assistant" />
 								</div>
-								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
-									<img src="images/legal/code.png" alt="PolicySense code snippet" style="width:100%;height:100%;object-fit:cover;" />
+								<div class="image fit">
+									<img src="images/legal/code.png" alt="PolicySense code snippet" />
 								</div>
-								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
-									<img src="images/legal/ground.png" alt="PolicySense ground truth evaluation" style="width:100%;height:100%;object-fit:cover;" />
+								<div class="image fit">
+									<img src="images/legal/ground.png" alt="PolicySense ground truth evaluation" />
 								</div>
-								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
-									<img src="images/legal/pinecone.png" alt="Pinecone vector DB" style="width:100%;height:100%;object-fit:cover;" />
+								<div class="image fit">
+									<img src="images/legal/pinecone.png" alt="Pinecone vector DB" />
 								</div>
 							</div>
 							

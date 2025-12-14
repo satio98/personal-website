@@ -3911,20 +3911,21 @@ input, select, textarea {
 /* Project thumbnails: fixed height, centered image with natural padding */
 /* Project thumbnails: fixed pixel size with responsive fallback */
 #three .image {
-	/* make image fill its allocated column and be cover-filled */
+	/* make image fill its allocated column but preserve full image (no heavy cropping) */
 	display: block !important;
-	width: 632px !important; /* target thumbnail width */
-	height: 435px !important; /* target thumbnail height */
+	width: 480px !important; /* reduced thumbnail width */
+	height: 331px !important; /* reduced thumbnail height (approx 1.45:1) */
 	background: transparent !important;
 	background-image: none !important; /* override JS-set background */
 	overflow: hidden;
+	flex: 0 0 480px !important;
 }
 
 #three .image img {
 	display: block !important;
 	width: 100% !important;
 	height: 100% !important;
-	object-fit: cover !important; /* fill container, crop if necessary */
+	object-fit: contain !important; /* show full image without cropping */
 	margin: 0;
 }
 
@@ -3955,37 +3956,51 @@ input, select, textarea {
 }
 
 #three .content .inner {
-	padding: 0.6rem 1rem;
+	padding: 1.25rem 1.25rem; /* more breathing room */
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center; /* center text vertically */
-	background: rgba(6,8,20,0.55); /* semi-transparent panel for readability */
+	justify-content: flex-start; /* stack content at top so actions can sit lower */
+	background: rgba(12,14,30,0.48); /* slightly lighter panel for readability */
 	color: #ffffff;
-	border-radius: 4px;
+	border-radius: 6px;
 }
 
 /* Tighter typography so description fits beside thumbnail */
 #three h2 {
 	font-size: 1.4rem;
-	margin-bottom: 0.35rem;
+	margin-bottom: 1rem; /* more space below title */
 }
 
 #three .content p {
-	font-size: 0.95rem;
-	line-height: 1.45;
-	margin-bottom: 0.5rem;
-	opacity: 0.95;
+	font-size: 1rem;
+	line-height: 1.75; /* increased line-height for readability */
+	margin-bottom: 1rem; /* more spacing between paragraphs */
+	opacity: 0.98;
 }
+
+/* Extra spacing between consecutive paragraphs (title/desc/stack) */
+#three .content p + p { margin-top: 0.9rem; }
 
 #three .content .actions { 
-	margin-top: 0.6rem;
+	margin-top: auto; /* push actions to the bottom of the content panel */
+	display: flex;
+	gap: 0.6rem;
+	align-items: center;
+	justify-content: flex-start; /* keep actions left-aligned with text */
 }
 
-/* Ensure buttons don't push layout too tall */
-#three .content .button {
-	padding: 0.7em 1.25em;
-	font-size: 0.9rem;
+/* Ensure buttons are visually balanced and symmetric */
+#three .content .actions .button,
+#three .content .actions a.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.4em 0.9em; /* smaller button */
+	font-size: 0.85rem;
+	border-radius: 999px; /* fully rounded pill */
+	line-height: 1;
+	min-width: 5.25rem; /* even smaller consistent width */
 }
 
 @media screen and (max-width: 980px) {
@@ -4001,15 +4016,15 @@ input, select, textarea {
 #three.spotlights > section { gap: 0 !important; padding: 0 !important; }
 #three .image { margin: 0 !important; border-radius: 0 !important; }
 #three .content { padding: 0 !important; }
-#three .content .inner { padding: 0.5rem 0.85rem !important; justify-content: center; }
-#three h2 { margin: 0 0 0.25rem 0 !important; line-height: 1.1; font-weight:700; }
-#three .content p { margin: 0 0 0.45rem 0 !important; font-size: 0.96rem; }
-#three .content .actions { margin-top: 0.4rem !important; }
+#three .content .inner { padding: 1.25rem 1.25rem !important; justify-content: flex-start !important; }
+#three h2 { margin: 0 0 0.6rem 0 !important; line-height: 1.1; font-weight:700; }
+#three .content p { margin: 0 0 1rem 0 !important; font-size: 1rem; }
+#three .content .actions { margin-top: auto !important; }
 
-@media screen and (max-width: 980px) { #three .content .inner { padding: 0.6rem !important; } }
+@media screen and (max-width: 980px) { #three .content .inner { padding: 1rem !important; } }
 
 /* Layout: give image a fixed column and let content take remaining space */
-#three .image { flex: 0 0 632px !important; }
+#three .image { flex: 0 0 480px !important; }
 #three .content { flex: 1 1 auto !important; }
 
 /* If viewport is narrow, make image responsive */
@@ -4034,3 +4049,38 @@ input, select, textarea {
 
 #three .image { z-index: 1; }
 #three .content { position: relative; z-index: 2; background: transparent !important; }
+
+/* FORCE: final fallback to adjust button placement and spacing */
+@media screen and (min-width: 700px) {
+	/* don't increase overall section height — keep min-height auto */
+	#three.spotlights > section { min-height: auto !important; }
+	#three.spotlights > section .content .inner { display: flex !important; flex-direction: column !important; }
+	/* push actions slightly lower without increasing section height */
+	#three.spotlights > section .content .inner .actions {
+		margin-top: auto !important; /* push to bottom of the inner container */
+		padding-top: 0.6rem !important; /* small vertical gap above actions */
+	}
+	/* make button compact and fully rounded */
+	#three.spotlights > section .content .inner .actions a.button,
+	#three.spotlights > section .content .inner .actions .button {
+		padding: 0.14em 0.4em !important; /* smaller touch target visually */
+		font-size: 0.68rem !important; /* smaller label */
+		border-radius: 999px !important; /* pill */
+		min-width: 2.6rem !important;
+	}
+
+	/* increase spacing between title / description / stack for readability */
+	#three.spotlights > section .content .inner h2 {
+		font-size: 1.25rem !important;
+		margin-bottom: 1.4rem !important;
+	}
+
+	#three.spotlights > section .content .inner p {
+		font-size: 0.95rem !important;
+		line-height: 1.8 !important;
+	}
+
+	#three.spotlights > section .content .inner p + p {
+		margin-top: 1.1rem !important;
+	}
+}

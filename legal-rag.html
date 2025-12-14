@@ -10,6 +10,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.legal-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:1100px;margin:0 auto 1.25rem;padding:0 1rem;}
+			.legal-gallery .image{width:100%;height:320px;overflow:hidden;}
+			.legal-gallery .image img{width:100%;height:100%;object-fit:cover;display:block}
+			@media (max-width:760px){.legal-gallery{grid-template-columns:1fr;max-width:760px}.legal-gallery .image{height:220px}}
+		</style>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -33,7 +39,20 @@
 						<div class="inner">
 							<h1 class="major">PolicySense RAG Assistant</h1>
 							<p><strong>Production-Grade Compliance System</strong></p>
-							<span class="image fit"><img src="images/Animation.gif" alt="PolicySense RAG Assistant" /></span>
+							<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:880px;margin:0 auto 1.25rem;">
+								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
+									<img src="images/legal/Animation.gif" alt="PolicySense RAG Assistant" style="width:100%;height:100%;object-fit:cover;" />
+								</div>
+								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
+									<img src="images/legal/code.png" alt="PolicySense code snippet" style="width:100%;height:100%;object-fit:cover;" />
+								</div>
+								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
+									<img src="images/legal/ground.png" alt="PolicySense ground truth evaluation" style="width:100%;height:100%;object-fit:cover;" />
+								</div>
+								<div class="image fit" style="width:100%;height:220px;overflow:hidden;">
+									<img src="images/legal/pinecone.png" alt="Pinecone vector DB" style="width:100%;height:100%;object-fit:cover;" />
+								</div>
+							</div>
 							
 							<h2>Overview</h2>
 							<p>Designed and deployed PolicySense, a production-grade RAG (Retrieval-Augmented Generation) system for compliance, safety, and certifications. This enterprise system transformed how engineering and compliance teams access and search through complex legal documentation, reducing research time from hours to seconds.</p>

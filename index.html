@@ -97,13 +97,15 @@
 
 				<!-- Three -->
 					<section id="three" class="wrapper style2 spotlights">
-						<section>
-							<a href="legal-rag.html" class="image"><img src="images/pic01.jpg" alt="Legal RAG System" data-position="center center" /></a>
-							<div class="content">
+						<section style="overflow: hidden;">
+							<a href="legal-rag.html" class="image" style="background:#20163a;overflow:hidden;">
+								<img src="images/Animation.gif" alt="PolicySense RAG Assistant" data-position="center center" style="display:block;width:100%;height:100%;object-fit:cover;background:transparent;" />
+							</a>
+							<div class="content" style="overflow:hidden;">
 								<div class="inner">
-									<h2>Legal RAG System</h2>
+									<h2>PolicySense RAG Assistant</h2>
 									<p><strong>Production-Grade Compliance System</strong></p>
-									<p>Built production Legal RAG system reducing compliance research time from 3 hours to 30 seconds. Deployed LangChain/FastAPI pipeline with Pinecone vector DB on AWS, increased audit accuracy by 40%.</p>
+									<p>Built production RAG system reducing compliance research time from 3 hours to 30 seconds. Deployed LangChain/FastAPI pipeline with Pinecone vector DB on AWS, increased audit accuracy by 40%.</p>
 									<p><strong>Stack:</strong> LangChain, FastAPI, Pinecone, OpenAI API, AWS, CI/CD</p>
 									<ul class="actions">
 										<li><a href="legal-rag.html" class="button">Learn more</a></li>
@@ -111,9 +113,11 @@
 								</div>
 							</div>
 						</section>
-						<section>
-							<a href="laparoscopic-surgery.html" class="image"><img src="images/pic02.jpg" alt="Autonomous Laparoscopic Surgery Simulator" data-position="top center" /></a>
-							<div class="content">
+						<section style="overflow: hidden;">
+							<a href="laparoscopic-surgery.html" class="image" style="background:#20163a;overflow:hidden;">
+								<img src="images/laproscopic%20thumbnail.png" alt="Autonomous Laparoscopic Surgery Simulator" data-position="top center" style="display:block;width:100%;height:100%;object-fit:cover;background:transparent;" />
+							</a>
+							<div class="content" style="overflow:hidden;">
 								<div class="inner">
 									<h2>Autonomous Laparoscopic Surgery Simulator</h2>
 									<p><strong>Reinforcement Learning Digital Twin</strong></p>
@@ -201,6 +205,24 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<!-- Restore project thumbnails: remove background-image and unhide <img> set by main.js -->
+			<script>
+				(function(){
+					var sel = document.querySelectorAll('#three .image');
+					for(var i=0;i<sel.length;i++){
+						var a = sel[i];
+						var img = a.querySelector('img');
+						if(!img) continue;
+						// Remove background-image applied by main.js
+						a.style.backgroundImage = 'none';
+						// Ensure image is visible and sized to container
+						img.style.display = 'block';
+						img.style.maxWidth = '100%';
+						img.style.maxHeight = '100%';
+						img.style.objectFit = 'contain';
+					}
+				})();
+			</script>
 
 	</body>
 </html>

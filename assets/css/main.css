@@ -3907,3 +3907,130 @@ input, select, textarea {
 			}
 
 		}
+
+/* Project thumbnails: fixed height, centered image with natural padding */
+/* Project thumbnails: fixed pixel size with responsive fallback */
+#three .image {
+	/* make image fill its allocated column and be cover-filled */
+	display: block !important;
+	width: 632px !important; /* target thumbnail width */
+	height: 435px !important; /* target thumbnail height */
+	background: transparent !important;
+	background-image: none !important; /* override JS-set background */
+	overflow: hidden;
+}
+
+#three .image img {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important; /* fill container, crop if necessary */
+	margin: 0;
+}
+
+/* Responsive: on narrow viewports make thumbnail full-width and auto height */
+@media screen and (max-width: 760px) {
+	#three .image {
+		width: 100% !important;
+		height: auto !important;
+	}
+	#three .image img {
+		width: 100% !important;
+		height: auto !important;
+		object-fit: contain;
+	}
+}
+
+/* Flatten project sections and adjust right-side typography for #three */
+#three.spotlights > section {
+	display: flex !important;
+	align-items: stretch !important; /* stretch so image and text align vertically */
+	gap: 0 !important;
+	padding: 0 !important;
+	min-height: auto !important;
+}
+
+#three .content {
+	flex: 1 1 auto;
+}
+
+#three .content .inner {
+	padding: 0.6rem 1rem;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center; /* center text vertically */
+	background: rgba(6,8,20,0.55); /* semi-transparent panel for readability */
+	color: #ffffff;
+	border-radius: 4px;
+}
+
+/* Tighter typography so description fits beside thumbnail */
+#three h2 {
+	font-size: 1.4rem;
+	margin-bottom: 0.35rem;
+}
+
+#three .content p {
+	font-size: 0.95rem;
+	line-height: 1.45;
+	margin-bottom: 0.5rem;
+	opacity: 0.95;
+}
+
+#three .content .actions { 
+	margin-top: 0.6rem;
+}
+
+/* Ensure buttons don't push layout too tall */
+#three .content .button {
+	padding: 0.7em 1.25em;
+	font-size: 0.9rem;
+}
+
+@media screen and (max-width: 980px) {
+	#three.spotlights > section {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	#three .image { width: 100% !important; height: auto !important; }
+	#three .content .inner { padding: 1rem; }
+}
+
+/* remove remaining margins and ensure content panel sits above image */
+#three.spotlights > section { gap: 0 !important; padding: 0 !important; }
+#three .image { margin: 0 !important; border-radius: 0 !important; }
+#three .content { padding: 0 !important; }
+#three .content .inner { padding: 0.5rem 0.85rem !important; justify-content: center; }
+#three h2 { margin: 0 0 0.25rem 0 !important; line-height: 1.1; font-weight:700; }
+#three .content p { margin: 0 0 0.45rem 0 !important; font-size: 0.96rem; }
+#three .content .actions { margin-top: 0.4rem !important; }
+
+@media screen and (max-width: 980px) { #three .content .inner { padding: 0.6rem !important; } }
+
+/* Layout: give image a fixed column and let content take remaining space */
+#three .image { flex: 0 0 632px !important; }
+#three .content { flex: 1 1 auto !important; }
+
+/* If viewport is narrow, make image responsive */
+@media screen and (max-width: 760px) {
+		#three .image { width: 100% !important; height: auto !important; flex: 0 0 auto !important; }
+		#three .image img { object-fit: contain !important; }
+		#three.spotlights > section { flex-direction: column !important; }
+}
+
+/* Ensure no purple overlay/padding covers the text */
+#three .image {
+	background: transparent !important;
+}
+
+#three .image:before {
+	display: none !important;
+}
+
+#three.spotlights > section {
+	position: relative;
+}
+
+#three .image { z-index: 1; }
+#three .content { position: relative; z-index: 2; background: transparent !important; }
